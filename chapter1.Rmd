@@ -5,6 +5,7 @@ This course is about R, the use of Github, and data analysis. Maybe not exactly 
   
 [huttusam.github.io/IODS-project] (http://huttusam.github.io/IODS-project)  
   
-## Links:
+## Some Links:
 [R Markdown Cheatsheet] (https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)  
+[Introduction to Open Data Science - Course Web Page] (https://mooc.helsinki.fi/course/view.php?id=52)
 
