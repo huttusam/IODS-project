@@ -1,4 +1,10 @@
 
 # About the project
 
-*Write a short description about the course and add a link to your github repository here. This is an R markdown (.Rmd) file so you can use R markdown syntax. See the 'Useful links' page in the mooc area (chapter 1) for instructions.*
+*This course is about R, the use of Github, and data analysis. Maybe not exactly an exhaustive description of the course, but along those lines.  
+  
+[huttusam.github.io/IODS-project] (http://huttusam.github.io/IODS-project)  
+  
+## Links:
+[R Markdown Cheatsheet] (https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)  
+
