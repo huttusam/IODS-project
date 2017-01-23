@@ -1,5 +1,5 @@
 ---
-title: "My First File"
+title: "README"
 author: "Sampsa Huttunen"
 date: "23 1 2017"
 output: html_document
@@ -9,4 +9,4 @@ output: html_document
 
 This course is about R, the use of Github, and data analysis. Maybe not exactly an exhaustive description of the course, but along those lines.  
 
-[My Course Diary] (http://huttusam.github.io/IODS-project)
+[My Course Diary] (huttusam.github.io/IODS-project)
