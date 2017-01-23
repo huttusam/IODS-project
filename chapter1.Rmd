@@ -1,7 +1,7 @@
 
 # About the project
 
-*This course is about R, the use of Github, and data analysis. Maybe not exactly an exhaustive description of the course, but along those lines.  
+This course is about R, the use of Github, and data analysis. Maybe not exactly an exhaustive description of the course, but along those lines.  
   
 [huttusam.github.io/IODS-project] (http://huttusam.github.io/IODS-project)  
   
