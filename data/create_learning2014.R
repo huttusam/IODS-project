@@ -62,3 +62,15 @@ analysis_dataset <- filter(analysis_dataset, points != 0)
 # checking the number of observations and variables in the new dataset
 dim(analysis_dataset)
 
+setwd("i:/Google Drive/Helsingin yliopisto/Intro to Open Data Science/IODS-project")
+
+# Write dataset to csv file
+write.csv(analysis_dataset, file = "data/analysis_dataset.csv")
+?write.csv 
+# read dataset from a csv file to 'read_dataset'
+read_dataset <- read.csv("data/analysis_dataset.csv", header = TRUE, row.names = 1)
+
+# checking the dataset structure
+str(read_dataset)
+head(read_dataset)
+View(read_dataset)
