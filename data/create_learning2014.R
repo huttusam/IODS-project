@@ -62,8 +62,6 @@ analysis_dataset <- filter(analysis_dataset, points != 0)
 # checking the number of observations and variables in the new dataset
 dim(analysis_dataset)
 
-setwd("i:/Google Drive/Helsingin yliopisto/Intro to Open Data Science/IODS-project")
-
 # Write dataset to csv file
 write.csv(analysis_dataset, file = "data/analysis_dataset.csv")
 
