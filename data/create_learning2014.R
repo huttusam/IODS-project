@@ -66,7 +66,7 @@ setwd("i:/Google Drive/Helsingin yliopisto/Intro to Open Data Science/IODS-proje
 
 # Write dataset to csv file
 write.csv(analysis_dataset, file = "data/analysis_dataset.csv")
-?write.csv 
+
 # read dataset from a csv file to 'read_dataset'
 read_dataset <- read.csv("data/analysis_dataset.csv", header = TRUE, row.names = 1)
 
