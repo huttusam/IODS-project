@@ -1,7 +1,19 @@
-# Insert chapter 2 title here
+# Regression and model validation
 
 *Describe the work you have done this week and summarize your learning.*
 
 - Describe your work and results clearly. 
 - Assume the reader has an introductory course level understanding of writing and reading R code as well as statistical methods
 - Assume the reader has no previous knowledge of your data or the more advanced methods you are using  
+
+
+I have created a dataset named 'analysis_dataset' from the dataset 'JYTOPKYS3_data'.
+The new dataset contains the information of 166 individuals as follows:
+- gender
+- age
+- attitude: an average of 10 different attitude-realted questions about Statistics
+- deep: an average of 12 questions about deep learning styles
+- stra: an average of 8 questions about learning strategies
+- surf: an average of 12 questions about surface learning styles
+- individual's total score in the questionnaire.
+
