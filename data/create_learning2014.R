@@ -65,9 +65,6 @@ analysis_dataset <- filter(analysis_dataset, points != 0)
 # checking the number of observations and variables in the new dataset
 dim(analysis_dataset)
 
-# Write the original dataset to a .csv file for later use
-write.csv(JYTOPKYS3_data, file = "data/JYTOPKYS3_data.csv")
-
 # Write the new dataset to a .csv file
 write.csv(analysis_dataset, file = "data/analysis_dataset.csv")
 

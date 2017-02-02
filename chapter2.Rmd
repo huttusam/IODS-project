@@ -17,9 +17,8 @@
 * Observations in the original data, where the total score ('points') was 0, have been omitted from the new dataset.  
 
   
-##### Data:  
+##### Data Files:  
 * The original dataset (JYTOPKYS3-data.txt) can be found [here](http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS3-data.txt)  
-* ... and in the more readable .csv format [here](https://github.com/huttusam/IODS-project/blob/master/data/JYTOPKYS3_data.csv)  
 * The new dataset (analysis_dataset.csv) can be found [here](https://github.com/huttusam/IODS-project/blob/master/data/analysis_dataset.csv)  
 
 ##### Script:  
