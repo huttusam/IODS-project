@@ -71,12 +71,7 @@ Looking at the values, we can see that *surf* has no statistically significant r
 
 ***  
 
-From these results, we can see that the combination of *attitude* and *stra* explain exam result on a statistically significant level. On the other hand, *attitude* as the only explanatory variable, explains the dependant variable even better, as we can see here:
   
-  ***
-  
-  
-  ![](images/table3.png)  
     
     
   
