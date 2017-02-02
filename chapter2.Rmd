@@ -3,22 +3,22 @@
 ##### I have created a dataset named 'analysis_dataset' from the dataset 'JYTOPKYS3_data'.  
 ##### The new dataset contains the information of 166 individuals as follows:  
 
-* gender (F/M)  
-* age (in years)  
+* *gender* (F/M)  
+* *age* (in years)  
 * *attitude*: an average of answers to 10 different attitude-realted questions about Statistics (Likert scale)  
 * *deep*: an average of answers to 12 questions about deep learning styles (Likert scale)  
 * *stra*: an average of answers to 8 questions about learning strategies (Likert scale)  
 * *surf*: an average of answers to 12 questions about surface learning styles (Likert scale)  
-* *points*: individual's total score in the survey  
+* *points*: the individual's total score in the survey.  
 
   
 ##### Notes:
-* In the original dataset the variable 'attitude' was a sum of 10 likert-scale values. In the new dataset, the value 'attitude' has been changed back to likert-scale by dividing each value by 10.  
+* In the original dataset the variable 'attitude' was a sum of 10 Likert scale values. In the new dataset, the value 'attitude' has been changed back to Likert scale by dividing each value by 10.  
 * Observations in the original data, where the total score ('points') was 0, have been omitted from the new dataset.  
 
   
 ##### Data:  
-* The original dataset (JYTOPKYS3-data.txt) in .txt format can be found [here](http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS3-data.txt)  
+* The original dataset (JYTOPKYS3-data.txt) can be found [here](http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS3-data.txt)  
 * ... and in the more readable .csv format [here](https://github.com/huttusam/IODS-project/blob/master/data/JYTOPKYS3-data.csv)  
 * The new dataset (analysis_dataset.csv) can be found [here](https://github.com/huttusam/IODS-project/blob/master/data/analysis_dataset.csv)  
 
