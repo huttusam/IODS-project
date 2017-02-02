@@ -143,7 +143,7 @@ $(document).ready(function () {
 <li><a href="#about-the-course">About the Course</a><ul>
 <li><a href="#some-links">Some Links</a></li>
 </ul></li>
-<li><a href="#insert-chapter-2-title-here">Insert chapter 2 title here</a></li>
+<li><a href="#regression-and-model-validation">Regression and model validation</a></li>
 </ul>
 </div>
 
@@ -160,15 +160,54 @@ $(document).ready(function () {
 <hr />
 </div>
 </div>
-<div id="insert-chapter-2-title-here" class="section level1">
-<h1>Insert chapter 2 title here</h1>
-<p><em>Describe the work you have done this week and summarize your learning.</em></p>
+<div id="regression-and-model-validation" class="section level1">
+<h1>Regression and model validation</h1>
+<div id="i-have-created-a-dataset-named-analysis_dataset-from-the-dataset-jytopkys3_data." class="section level5">
+<h5>I have created a dataset named ‘analysis_dataset’ from the dataset ‘JYTOPKYS3_data’.</h5>
+</div>
+<div id="the-new-dataset-contains-the-information-of-166-individuals-as-follows" class="section level5">
+<h5>The new dataset contains the information of 166 individuals as follows:</h5>
 <ul>
-<li>Describe your work and results clearly.</li>
-<li>Assume the reader has an introductory course level understanding of writing and reading R code as well as statistical methods</li>
-<li>Assume the reader has no previous knowledge of your data or the more advanced methods you are using</li>
+<li>gender (F/M)<br />
+</li>
+<li>age (in years)<br />
+</li>
+<li><em>attitude</em>: an average of answers to 10 different attitude-realted questions about Statistics (Likert scale)<br />
+</li>
+<li><em>deep</em>: an average of answers to 12 questions about deep learning styles (Likert scale)<br />
+</li>
+<li><em>stra</em>: an average of answers to 8 questions about learning strategies (Likert scale)<br />
+</li>
+<li><em>surf</em>: an average of answers to 12 questions about surface learning styles (Likert scale)<br />
+</li>
+<li><em>points</em>: individual’s total score in the survey</li>
+</ul>
+</div>
+<div id="notes" class="section level5">
+<h5>Notes:</h5>
+<ul>
+<li>In the original dataset the variable ‘attitude’ was a sum of 10 likert-scale values. In the new dataset, the value ‘attitude’ has been changed back to likert-scale by dividing each value by 10.<br />
+</li>
+<li>Observations in the original data, where the total score (‘points’) was 0, have been omitted from the new dataset.</li>
+</ul>
+</div>
+<div id="data" class="section level5">
+<h5>Data:</h5>
+<ul>
+<li>The original dataset (JYTOPKYS3-data.txt) in .txt format can be found <a href="http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS3-data.txt">here</a><br />
+</li>
+<li>… and in the more readable .csv format <a href="https://github.com/huttusam/IODS-project/blob/master/data/JYTOPKYS3-data.csv">here</a><br />
+</li>
+<li>The new dataset (analysis_dataset.csv) can be found <a href="https://github.com/huttusam/IODS-project/blob/master/data/analysis_dataset.csv">here</a></li>
+</ul>
+</div>
+<div id="script" class="section level5">
+<h5>Script:</h5>
+<ul>
+<li>The R script used to create the new dataset (<em>with comments explaining the process</em>) is <a href="https://github.com/huttusam/IODS-project/blob/master/data/create_learning2014.R">here</a></li>
 </ul>
 <hr />
+</div>
 </div>
 
 
