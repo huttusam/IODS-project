@@ -1,4 +1,4 @@
-# Sampsa Huttunen, 26.1.2017, My first R Script
+# Sampsa Huttunen, 26.1.2017, Wrangling Data from 'JYTOPKYS3_data' to 'analysis_dataset'
 
 # Access the dplyr library
 library(dplyr)
@@ -66,9 +66,9 @@ dim(analysis_dataset)
 write.csv(analysis_dataset, file = "data/analysis_dataset.csv")
 
 # read dataset from a csv file to 'read_dataset'
-read_dataset <- read.csv("data/analysis_dataset.csv", header = TRUE, row.names = 1)
+analysis_dataset <- read.csv("data/analysis_dataset.csv")
 
 # checking the dataset structure
-str(read_dataset)
-head(read_dataset)
-View(read_dataset)
+str(analysis_dataset)
+head(analysis_dataset)
+View(analysis_dataset)
