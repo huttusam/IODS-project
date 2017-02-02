@@ -9,12 +9,12 @@
 * *deep*: an average of answers to 12 questions about deep learning styles (Likert scale)  
 * *stra*: an average of answers to 8 questions about learning strategies (Likert scale)  
 * *surf*: an average of answers to 12 questions about surface learning styles (Likert scale)  
-* *points*: the individual's total score in the survey.  
+* *points*: the individual's total exam score  
 
   
 ##### Notes:
 * In the original dataset the variable 'attitude' was a sum of 10 Likert scale values. In the new dataset, the value 'attitude' has been changed back to Likert scale by dividing each value by 10.  
-* Observations in the original data, where the total score ('points') was 0, have been omitted from the new dataset.  
+* Observations in the original data, where the total exam score ('points') was 0, have been omitted from the new dataset.  
 
   
 ##### Data Files:  
@@ -23,4 +23,17 @@
 
 ##### Script:  
 * The R script used to create the new dataset (*with comments explaining the process*) is  [here](https://github.com/huttusam/IODS-project/blob/master/data/create_learning2014.R)  
+
+##### Analysis:
+
+From a scatter plot matrix we can see that 'attitude' correlates with 'points' (see image below).  
+
+![](images/scatterplotmatrix.png)  
+
+When we create a regression model of 'attitude' versus 'points', we can see this more clearly (see image below).  
+
+![](images/attitude-points.png)  
+
+
+
 
