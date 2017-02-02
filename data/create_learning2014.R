@@ -78,23 +78,7 @@ head(analysis_dataset)
 # viewing the new dataset; it has 166 observations and 7 variables
 View(analysis_dataset)
 
-# Access the gglot2 library
-library(ggplot2)
 
-# Drawing a plot to visualize studen't attitudes effect on points
 
-# initialize plot with data and aesthetic mapping
-p1 <- ggplot(analysis_dataset, aes(x = deep, y = points, col = gender))
 
-# define the visualization type (points)
-p2 <- p1 + geom_point()
 
-# draw the plot
-p2
-
-# add a regression line
-p3 <- p2 + geom_smooth(method = "lm")
-
-# add a main title and draw the plot
-p4 <- p3 + ggtitle("Student's attitude versus overall points")
-p4

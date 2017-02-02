@@ -1,20 +1,21 @@
 # Regression and model validation
 
-##### I have created a dataset named 'analysis_dataset' from the dataset 'JYTOPKYS3_data'.  
-##### The new dataset contains the information of 166 individuals as follows:  
+##### I have created a new dataset named 'analysis_dataset' from the dataset 'JYTOPKYS3_data'.  
+##### The original dataset contains answers to a survey conducted to the participants of an introductory Statistics course; n=166 (66% female, mean age 25.51 years, SD = 7.8).
+##### The following variables were chosen to 'analysis_dataset' for further analysis:
 
 * *gender* (F/M)  
 * *age* (in years)  
-* *attitude*: an average of answers to 10 different attitude-realted questions about Statistics (Likert scale)  
-* *deep*: an average of answers to 12 questions about deep learning styles (Likert scale)  
-* *stra*: an average of answers to 8 questions about learning strategies (Likert scale)  
-* *surf*: an average of answers to 12 questions about surface learning styles (Likert scale)  
-* *points*: the individual's total exam score  
+* *attitude*: an average of answers to 10 questions measuring the student's attitude towards Statistics (Likert scale)  
+* *deep*: an average of answers to 12 questions measuring the student's level of deep learning approach (Likert scale)  
+* *stra*: an average of answers to 8 questions measuring the student's level of strategic learning approach (Likert scale)  
+* *surf*: an average of answers to 12 questions measuring the student's level of surface learning approach (Likert scale)  
+* *points*: the student's exam score.  
 
   
 ##### Notes:
-* In the original dataset the variable 'attitude' was a sum of 10 Likert scale values. In the new dataset, the value 'attitude' has been changed back to Likert scale by dividing each value by 10.  
-* Observations in the original data, where the total exam score ('points') was 0, have been omitted from the new dataset.  
+* In the original dataset the variable 'attitude' was a sum of 10 Likert scale values. In the new dataset, the value 'attitude' has been changed back to average by dividing the values by 10.  
+* Observations in the original data, where the exam score ('points') was 0, have been omitted from the new dataset.  
 
   
 ##### Data Files:  
@@ -23,17 +24,61 @@
 
 ##### Script:  
 * The R script used to create the new dataset (*with comments explaining the process*) is  [here](https://github.com/huttusam/IODS-project/blob/master/data/create_learning2014.R)  
-
+  
+  
+  
 ##### Analysis:
 
-From a scatter plot matrix we can see that 'attitude' correlates with 'points' (see image below).  
+From a scatter plot matrix we can see that the age structure of the students is fairly young, most likely due to the fact that they are university students. Students' attitude towards Statistics (*attitude*) correlates (r=0.437) with students' exam results (*points*), which is not very surprising either. If you like what you study, you tend to get better grades. The same goes with the negative correlation (r=-0.324) between surface and deep learning approaches. Using one means that you don't use the other.
+  
+***  
 
-![](images/scatterplotmatrix.png)  
+  ![](images/scatterplotmatrix.png)
 
-When we create a regression model of 'attitude' versus 'points', we can see this more clearly (see image below).  
+***  
+
+When male and female students are looked at separately, we can see that the attitude towards Statistics seems to be a bit better among the male than female students. Also, female students seem to use the surface learning approach slightly more than male students.
+
+***    
+  
+![](images/scatterplotmatrixgender.png)  
+
+***
+  
+When we create a regression model of *attitude* versus *points*, we can see the correlation between them more clearly.  
+
+  
+***
 
 ![](images/attitude-points.png)  
 
+***
+
+When we choose *attitude*, *surf* and *strat* as explanatory variables and fit a regression model where exam result (*points*) is the target (dependent) variable, we get the following results:
+
+***  
+
+![](images/table1.png)  
+
+***  
 
 
+Looking at the values, we can see that *surf* has no statistically significant realtionship with the target variable (*points*). Taking *surf* out of the model produces the following results:
 
+***  
+    
+![](images/table2.png)  
+
+***  
+
+From these results, we can see that the combination of *attitude* and *stra* explain exam result on a statistically significant level. On the other hand, *attitude* as the only explanatory variable, explains the dependant variable even better, as we can see here:
+  
+  ***
+  
+  
+  ![](images/table3.png)  
+    
+    
+  
+  
+  
