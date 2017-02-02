@@ -35,6 +35,9 @@ deep_questions <- c("D03", "D11", "D19", "D27", "D07", "D14", "D22", "D30", "D06
 surface_questions <- c("SU02", "SU10", "SU18", "SU26", "SU05", "SU13", "SU21", "SU29", "SU08", "SU16", "SU24", "SU32")
 strategic_questions <- c("ST01", "ST09", "ST17", "ST25", "ST04", "ST12", "ST20", "ST28")
 
+# changing attitude to likert-scale values (1-5)
+JYTOPKYS3_data$attitude <- JYTOPKYS3_data$attitude/10
+
 # select the columns related to deep learning and create column 'deep' by averaging
 deep_columns <- select(JYTOPKYS3_data, one_of(deep_questions))
 JYTOPKYS3_data$deep <- rowMeans(deep_columns)
@@ -62,13 +65,18 @@ analysis_dataset <- filter(analysis_dataset, points != 0)
 # checking the number of observations and variables in the new dataset
 dim(analysis_dataset)
 
-# Write dataset to csv file
+# Write the original dataset to a .csv file for later use
+write.csv(JYTOPKYS3_data, file = "data/JYTOPKYS3_data.csv")
+
+# Write the new dataset to a .csv file
 write.csv(analysis_dataset, file = "data/analysis_dataset.csv")
 
-# read dataset from a csv file to 'read_dataset'
+# read the dataset back from the .csv file to 'analysis_dataset'
 analysis_dataset <- read.csv("data/analysis_dataset.csv")
 
-# checking the dataset structure
+# checking structure of the new dataset
 str(analysis_dataset)
 head(analysis_dataset)
+
+# viewing the new dataset; its has 166 obervations and 7 variables
 View(analysis_dataset)
