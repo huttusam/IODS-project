@@ -74,7 +74,7 @@ Looking at the values, we can see that *surf* has no statistically significant r
 Multiple R Squared (Finnish: *selityskerroin*):  
 The higher the value, the better the independent variables predict the dependent variable. In the above cases, where the R squared is ~ 0,2, the independent variables can explain about 20% of the variation of the dependant variable.
   
-The required diagnostic plots, Residuals vs Fitted values, Normal QQ-plot and Residuals vs Leverage, are below. With these images, the validity of the model can be assessed.   
+The required diagnostic plots, Residuals vs Fitted values, Normal QQ-plot and Residuals vs Leverage, are below. With these images, the validity of the model can be assessed. The first plot (Residuals vs. Fitted) shows that there are no problems in the model, since the reasonably flat line indicates that the linear model is working. In the second plot (Normal Q-Q) the linearity of the points suggests that the data is normally distributed. The third plot (Residuals vs. Leverage) shows that the data has no outliers that would skew the regression results.
 
 
 
