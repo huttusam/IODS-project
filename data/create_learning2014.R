@@ -6,7 +6,7 @@ library(dplyr)
 # reading data from a file
 JYTOPKYS3_data <- read.table("http://www.helsinki.fi/~kvehkala/JYTmooc/JYTOPKYS3-data.txt", sep = "\t", header = TRUE)
 
-# viewing JYTOPKYS3_data: a dataset containing information of 183 individuals
+# viewing JYTOPKYS3_data: a dataset containing information of 183 observations and 63 variables
 View(JYTOPKYS3_data)
 
 # inspecting JYTOPKYS3_data
@@ -56,26 +56,29 @@ keep_columns <- c("gender", "age", "attitude", "deep", "stra", "surf", "points")
 # creating a new dataset by choosing 'keep_columns' from the original dataset
 analysis_dataset <- select(JYTOPKYS3_data, one_of(keep_columns))
 
-# print out the column names in the new dataset
+# print out the column names in the new dataset ("gender", "age", "attitude", "deep", "stra", "surf", "points")
 colnames(analysis_dataset)
 
 # exclude observations where 'points' = 0
 analysis_dataset <- filter(analysis_dataset, points != 0)
 
 # checking the number of observations and variables in the new dataset
+# Tha data now has 166 observations and 7 variables
 dim(analysis_dataset)
 
 # write the new dataset to a .csv file
 write.csv(analysis_dataset, file = "data/analysis_dataset.csv")
 
-# read the dataset back from the .csv file to 'analysis_dataset'
+# read the dataset back from the .csv file to 'analysis_dataset' (for practice)
 analysis_dataset <- read.csv("data/analysis_dataset.csv")
 
 # checking structure of the new dataset
 str(analysis_dataset)
 head(analysis_dataset)
 
-# viewing the new dataset; it has 166 observations and 7 variables
+# viewing the new dataset
 View(analysis_dataset)
+
+
 
 
