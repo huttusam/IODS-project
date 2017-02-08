@@ -1,6 +1,5 @@
-# Sampsa Huttunen, 26.1.2017, Wrangling Student Alcohol Consumpson study dataset by Fabio Pagnotta & Hossain Mohammad Amran. 
+# Sampsa Huttunen, 8.2.2017, Wrangling Student Alcohol Consumption study dataset by Fabio Pagnotta & Hossain Mohammad Amran. 
 # Data source: https://archive.ics.uci.edu/ml/datasets/STUDENT+ALCOHOL+CONSUMPTION
-
 
 # Access dplyr
 library(dplyr)
