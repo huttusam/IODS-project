@@ -16,10 +16,11 @@
 
 The new dataset 'alc' has 382 observations and 35 variables. The variables are:
 
-```{r}
+```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
 alc = read.table("data/alcohol-joined.csv", sep = ";", header = TRUE)
 colnames(alc)
 ```
+
 ####The meaning of each variable is as follows:
 * 1 school - student's school (binary: 'GP' - Gabriel Pereira or 'MS' - Mousinho da Silveira) 
 * 2 sex - student's sex (binary: 'F' - female or 'M' - male) 
