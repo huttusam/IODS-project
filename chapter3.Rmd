@@ -2,7 +2,7 @@
 
 ### Data Wrangling
 
-##### I have created a new dataset 'alcohol-joined' from two datasets of alcohol use habits and background info of Math and Portugese language course students, n=382 (198 females and 184 males) with a mean age of 16.6 years.  
+##### I have created a new dataset 'alcohol-joined' from two datasets of alcohol use habits and background info of Math and Portugese language course students, n=382 (198 females and 184 males, mean age of 16.6 years).  
 
 ##### Data Files:  
 * The original datasets are [student-mat.csv](https://github.com/huttusam/IODS-project/blob/master/data/student-mat.csv) and [student-por.csv](https://github.com/huttusam/IODS-project/blob/master/data/student-por.csv)
@@ -76,7 +76,7 @@ gather(alc) %>% ggplot(aes(value)) + facet_wrap("key", scales = "free") + geom_b
 
 ```
 
-Interegsting variables to look at, considering their relation to alcohol consumtion, would be, for example, sex, health, absence from classes and final grades. My hypothesis would be that men use more alcohol than women and that high alcohol consumption leads to lower grades, more abscence and lower health status.  
+Interegsting variables to look at, considering their relation to alcohol consumption, would be, for example, sex, health, absences from classes and final grades. My hypothesis would be that men use more alcohol than women and that high alcohol consumption leads to lower grades, more abscence and lower health status.  
 
 OK, let's see how the aformentioned four variables correlate with alcohol consumption by cross tabulating them and drawing some plots to illustrate the correlations:
 
@@ -112,7 +112,7 @@ g3 + geom_boxplot() + ylab("Absences") + ggtitle("Student absences by alcohol co
 # produce summary statistics by high_use and health
 alc %>% group_by(high_use) %>% summarise(mean_health = mean(health)) 
 
-# initialise a plot of high_use and healt
+# initialise a plot of high_use and health
 g4 <- ggplot(alc, aes(x = high_use, y = health))
 
 # define the plot as a boxplot and draw it
@@ -120,7 +120,47 @@ g4 + geom_boxplot() + ylab("Health") + ggtitle("Student health by alcohol consum
 
 ```  
 
-By looking at the graphical presentations above, we can see that male students report bigger alcohol consumption than their female peers. High alcohol consumption also seems to correlate slightly with lower final grades and more absence from classes. On the other hand, alcohol use does not seem to correlate with health, but we have to keep in mind that the participants of this study are very young (15-22 year olds, mean age 16.6 years) and health problems created by alcohol mostly accumulate over time.
+By looking at the graphical presentations above, we can see that male students report bigger alcohol consumption than their female peers. High alcohol use also seems to correlate slightly with lower final grades and more absences from classes. On the other hand, alcohol use does not seem to correlate with health, but we have to keep in mind that the participants of this study are very young (15-22 year olds, mean age 16.6 years) and health problems created by alcohol mostly accumulate over time.
+
+
+###Logistical regression analysis
+
+Use logistic regression to statistically explore the relationship between your chosen variables and the binary high/low alcohol consumption variable as the target variable.
+
+```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+# find the model with glm()
+m <- glm(high_use ~ G3 + absences + health + sex, data = alc, family = "binomial")
+```
+
+
+###Summary of the fitted model
+
+Presenting and interpreting a summary of the fitted model.
+
+```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+# print out a summary of the model
+summary(m)
+```
+
+###Coefficients of the model
+
+Presenting and interpreting the coefficients of the model as odds ratios and providing confidence intervals for them.
+```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+
+# compute odds ratios (OR)
+OR <- coef(m) %>% exp
+
+# compute confidence intervals (CI)
+CI = exp(confint(m))
+
+# print out the odds ratios with their confidence intervals
+cbind(OR, CI)
+
+```
+
+###Interpretations
+
+Interpret the results and compare them to your previously stated hypothesis. Hint: If your model includes factor variables see for example the first answer of this stackexchange thread on how R treats and how you should interpret these variables in the model output (or use some other resource to study this).
 
 
 
