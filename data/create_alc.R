@@ -1,6 +1,9 @@
 # Sampsa Huttunen, 8.2.2017, Wrangling Student Alcohol Consumption study dataset by Fabio Pagnotta & Hossain Mohammad Amran. 
 # Data source: https://archive.ics.uci.edu/ml/datasets/STUDENT+ALCOHOL+CONSUMPTION
 
+#Set working directory
+setwd("I:/Google Drive/Helsingin yliopisto/Intro to Open Data Science/IODS-project/data")
+
 # Access dplyr
 library(dplyr)
 
@@ -94,6 +97,7 @@ colnames(alc)
 # Taking a peek at alc... looks kosher
 glimpse(alc)
 
-# Save joined and modified data 'alc' to a file
-write.csv2(alc, file = "alcohol-joined.csv", row.names = FALSE)
+# Save joined and modified data 'alc' to a file that looks good in an EUropean verion of Excel, but also has a decimal point instead of a comma
+write.table(alc, file = "alcohol-joined.csv", sep = ";", qmethod="double", row.names=FALSE)
+
 
