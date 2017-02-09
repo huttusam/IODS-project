@@ -143,6 +143,8 @@ $(document).ready(function () {
 <div id="analysis" class="section level3">
 <h3>Analysis</h3>
 <p>The new dataset ‘alc’ has 382 observations and 35 variables. The variables are:</p>
+<pre class="r"><code>alc = read.table(&quot;data/alcohol-joined.csv&quot;, sep = &quot;;&quot;, header = TRUE)
+colnames(alc)</code></pre>
 <pre><code>##  [1] &quot;school&quot;     &quot;sex&quot;        &quot;age&quot;        &quot;address&quot;    &quot;famsize&quot;   
 ##  [6] &quot;Pstatus&quot;    &quot;Medu&quot;       &quot;Fedu&quot;       &quot;Mjob&quot;       &quot;Fjob&quot;      
 ## [11] &quot;reason&quot;     &quot;nursery&quot;    &quot;internet&quot;   &quot;guardian&quot;   &quot;traveltime&quot;

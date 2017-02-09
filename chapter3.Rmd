@@ -16,7 +16,7 @@
 
 The new dataset 'alc' has 382 observations and 35 variables. The variables are:
 
-```{r echo=FALSE}
+```{r}
 alc = read.table("data/alcohol-joined.csv", sep = ";", header = TRUE)
 colnames(alc)
 ```
