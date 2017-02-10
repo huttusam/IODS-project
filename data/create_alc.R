@@ -1,4 +1,4 @@
-# Sampsa Huttunen, 8.2.2017, Wrangling Student Alcohol Consumption study dataset by Fabio Pagnotta & Hossain Mohammad Amran. 
+# Sampsa Huttunen, 10.2.2017, Wrangling Student Alcohol Consumption study dataset by Fabio Pagnotta & Hossain Mohammad Amran. 
 # Data source: https://archive.ics.uci.edu/ml/datasets/STUDENT+ALCOHOL+CONSUMPTION
 
 #Set working directory
@@ -97,7 +97,7 @@ colnames(alc)
 # Taking a peek at alc... looks kosher
 glimpse(alc)
 
-# Save joined and modified data 'alc' to a file that looks good in an EUropean verion of Excel, but also has a decimal point instead of a comma
+# Save joined and modified data 'alc' to a file that looks good in an European version of Excel, but also has a decimal point instead of a comma
 write.table(alc, file = "alcohol-joined.csv", sep = ";", qmethod="double", row.names=FALSE)
 
 

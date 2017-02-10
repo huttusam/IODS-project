@@ -218,7 +218,7 @@ cv$delta[1]
 
 ``` 
 
-The training error of our model (0.26) is lower than if we were just to jut guess wether a person has high or low alcohol use.
+The training error of our model (0.26) is lower than if we were just to guess whether a person has high or low alcohol use.
 
 The validation error in our 10-fold cross-validation is about the same as in the model introduced in DataCamp (high_use ~ failures + absences + sex), which suggests that our model does equally well as the DataCamp model.  
 
