@@ -23,7 +23,7 @@ colnames(alc)
 
 ```
 
-####The meaning of each variable is as follows:
+#####The meaning of each variable is as follows:
 * 1 school - student's school (binary: 'GP' - Gabriel Pereira or 'MS' - Mousinho da Silveira) 
 * 2 sex - student's sex (binary: 'F' - female or 'M' - male) 
 * 3 age - student's age (numeric: from 15 to 22) 
@@ -67,7 +67,7 @@ colnames(alc)
 * 35 high_use - if alc_use is more than 2, then TRUE else FALSE (binary: TRUE or FALSE)  
 
 
-####Relationship of alcohol consumption to other variables
+###Relationship of alcohol consumption to other variables
 
 Let's look at a graphical summarization of the data:
 
