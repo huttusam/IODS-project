@@ -175,7 +175,7 @@ lda.pred <- predict(lda.fit, newdata = test)
 # cross tabulate the results
 table(correct = correct_classes, predicted = lda.pred$class)
 ```
-##### From the results we can see that our model predicts high crime rate quite well. Then, on the other hand, the model doesn't do that well in other categories. So, in sum, if you want to know, where the bad guys are, our model can help! :)
+##### From the results we can see that our model predicts high crime rate quite well. Then, on the other hand, the model doesn't do that well in other categories. In sum, if you want to know where the bad guys are, our model can help! :)
 
 ##### OK, let's now reload the Boston dataset and sandardize it.
 ```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
@@ -193,7 +193,7 @@ dist_eu <- dist(boston_scaled)
 summary(dist_eu)
 
 ```
-##### Let's now run a k-means algorithm on the dataset and investigate the optimal number of clusters and rerun the algorithm. After testing different amounts of clusters, I ended up with four, which gave me quite a comprehensible visuals:
+##### Let's now run a k-means algorithm on the dataset and investigate the optimal number of clusters and rerun the algorithm. After testing different amounts of clusters, I ended up with four, which gave me quite comprehensible visuals:
 
 ```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
 # k-means clustering

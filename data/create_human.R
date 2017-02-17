@@ -31,7 +31,7 @@ colnames(gii)[2] <- "Country"
 colnames(gii)[3] <- "GII"
 colnames(gii)[4] <- "MMR"
 colnames(gii)[5] <- "ABR"
-colnames(gii)[6] <- "FemaleParliament"
+colnames(gii)[6] <- "FemaleParl"
 colnames(gii)[7] <- "EduFemale"
 colnames(gii)[8] <- "EduMale"
 colnames(gii)[9] <- "LabourFemale"
@@ -56,8 +56,9 @@ human <- inner_join(hd, gii, by = "Country")
 colnames(human)
 str(human)
 
-#Checking dimensions of the new dataset: 195 observations and 19 variables
+#Checking dimensions of the new dataset
 dim(human)
+# 195 observations and 19 variables
 
 # Save joined and modified data 'human' to a file that looks good in an European version of Excel, but also has a decimal point instead of a comma
 write.table(human, file = "human.csv", sep = ";", qmethod="double", row.names=FALSE)
