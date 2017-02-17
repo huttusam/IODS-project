@@ -51,9 +51,7 @@ library(corrplot, tidyverse)
 # calculate the correlation matrix
 cor_matrix<-cor(Boston)
 # print the correlation matrix
-# corrplot(cor_matrix, type = "upper", cl.pos = "b", tl.pos = "d", tl.cex = 0.6)
-# visualize the correlation matrix
-corrplot(cor_matrix, method="circle")
+corrplot(cor_matrix, type = "upper", cl.pos = "b", tl.pos = "d", tl.cex = 0.6)
 ```
 
 As we can see from the matrix, some variables have a strong positive (blue circles) or negative correlation (red circles). It appears, for example, that the area's property-tax rate (tax) correaltes heavily with access to radial highways (rad). In ther words, the closer the highways, the bigger the tax.  
@@ -67,5 +65,142 @@ In other words, areas farther away from the centres have younger buildings, less
 
 Another self-evident correlation in the data can be seen in the lower right corner of the matrix: Low socioeconomic status of the people living in the area (lstat) has a strong negative correlation with the median value of owner-occupied homes (medv). In other words, poorer people own less-valuable properties and vice versa.  
 
+#####Then we standardize the dataset and print out a summary:  
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
+# center and standardize variables
+boston_scaled <- scale(Boston)
 
-  
+# summaries of the scaled variables
+summary(boston_scaled)
+```
+#####Now all our variables follow the same standard and are, thus, comparable to each other.  
+
+#####Let's also convert the data to a data frame format for later use:
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
+# change the object to data frame
+boston_scaled <- as.data.frame(boston_scaled)
+```
+##### Now, let's create a categorical variable of the crime rate in the Boston dataset and delete the old crime rate variable
+
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
+# save the scaled crim as scaled_crim
+scaled_crim <- boston_scaled$crim
+
+# create a quantile vector of crim and print it
+bins <- quantile(scaled_crim)
+
+# create a categorical variable 'crime'
+crime <- cut(scaled_crim, breaks = bins, include.lowest = TRUE, label=c("low", "med_low", "med_high", "high"))
+
+# remove original crim from the dataset
+boston_scaled <- dplyr::select(boston_scaled, -crim)
+
+# add the new categorical value to scaled data
+boston_scaled <- data.frame(boston_scaled, crime)
+```
+#####The summary of our dataset will now look like this with our new categorical crime variable as the last column. 
+```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+# Print summary of the new dataset
+summary(boston_scaled)
+```
+#####Next, we are going to divide the dataset to train and test sets, so that 80% of the data belongs to the train set:
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
+# number of rows in the Boston dataset 
+n <- nrow(boston_scaled)
+
+# choose randomly 80% of the rows
+ind <- sample(n,  size = n * 0.8)
+
+# create train set
+train <- boston_scaled[ind,]
+
+# create test set 
+test <- boston_scaled[-ind,]
+
+# save the correct classes from test data
+correct_classes <- test$crime
+```
+#####The summary of our training dataset will now look like this:
+```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+summary(train)
+```
+#####And the summary of our test dataset like this:
+```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+summary(test)
+```
+#####Then we will fit the linear discriminant analysis on the train set using the categorical crime rate as the target variable and all the other variables as predictor variables:
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
+# linear discriminant analysis
+lda.fit <- lda(crime ~ ., data = train)
+lda.fit
+```
+
+##### Then we will draw the LDA (bi)plot from the data:
+```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+# the function for lda biplot arrows
+lda.arrows <- function(x, myscale = 1, arrow_heads = 0.1, color = "black", tex = 0.75, choices = c(1,2)){
+  heads <- coef(x)
+  arrows(x0 = 0, y0 = 0, 
+         x1 = myscale * heads[,choices[1]], 
+         y1 = myscale * heads[,choices[2]], col=color, length = arrow_heads)
+  text(myscale * heads[,choices], labels = row.names(heads), 
+       cex = tex, col=color, pos=3)
+}
+
+# target classes as numeric
+classes <- as.numeric(train$crime)
+
+# plot the lda results
+plot(lda.fit, dimen = 2, pch = classes, col = classes)
+lda.arrows(lda.fit, myscale =2)
+```
+##### From the plot we can see that the closeness of radial highways strongly correlates with high crime rate.
+
+##### Now, we save the crime categories from the test set and then remove the categorical crime variable from the test dataset:
+
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
+# save the correct classes from test data
+correct_classes <- test$crime
+
+# remove the crime variable from test data
+test <- dplyr::select(test, -crime)
+```
+##### Next, We will predict the classes with the LDA model on the test data:
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
+# predict classes with test data
+lda.pred <- predict(lda.fit, newdata = test)
+```
+##### Then we will cross tabulate the results with the crime categories from the test set:
+```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+# cross tabulate the results
+table(correct = correct_classes, predicted = lda.pred$class)
+```
+##### From the results we can see that our model predicts high crime rate quite well. Then, on the other hand, the model doesn't do that well in other categories. So, in sum, if you want to know, where the bad guys are, our model can help! :)
+
+##### OK, let's now reload the Boston dataset and sandardize it.
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
+# load MASS and Boston
+library(MASS)
+data('Boston')
+
+# Scaling the variables
+boston_scaled <- as.data.frame(boston_scaled)
+
+# euclidean distance matrix
+dist_eu <- dist(boston_scaled)
+
+# look at the summary of the distances
+summary(dist_eu)
+
+```
+##### Let's now run a k-means algorithm on the dataset and investigate the optimal number of clusters and rerun the algorithm. After testing different amounts of clusters, I ended up with four, which gave me quite a comprehensible visuals:
+
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
+# k-means clustering
+km <- kmeans(dist_eu, centers = 4)
+
+# plot the Boston dataset with clusters
+pairs(Boston, col = km$cluster)
+
+```
+
