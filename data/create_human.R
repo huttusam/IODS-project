@@ -63,7 +63,7 @@ str(human)
 dim(human)
 # 195 observations and 19 variables
 
-# Save joined and modified data 'human' to a file that looks good in an European version of Excel, but also has a decimal point instead of a comma
+# Save joined and modified data 'human' to a file that looks good in a European version of Excel, but also has a decimal point instead of a comma
 write.table(human, file = "human.csv", sep = ";", qmethod="double", row.names=FALSE)
 
 
