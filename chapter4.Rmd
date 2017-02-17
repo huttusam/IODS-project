@@ -1,0 +1,71 @@
+# Clustering and Classification
+
+This exercise analyses data from the *Boston Dataset*, which is a dataset containing Housing Values of Boston, Massachusettes Suburbias.  
+
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
+# access the MASS package
+library(MASS)
+# load the data
+data("Boston")
+```
+The data has 506 observations and 14 variables  
+```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+# Exploring the dimensions of the data
+dim(Boston)
+```
+and its data structure looks like this:
+```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+# Exploring the structure of the data
+str(Boston)
+```
+  
+#####The variables stand for:
+* crim - per capita crime rate by town.
+* zn - proportion of residential land zoned for lots over 25,000 sq.ft.
+* indus - proportion of non-retail business acres per town.
+* chas - Charles River dummy variable (= 1 if tract bounds river; 0 otherwise).
+* nox - nitrogen oxides concentration (parts per 10 million).
+* rm - average number of rooms per dwelling.
+* age - proportion of owner-occupied units built prior to 1940.
+* dis - weighted mean of distances to five Boston employment centres.
+* rad - index of accessibility to radial highways.
+* tax - full-value property-tax rate per \$10,000.
+* ptratio - pupil-teacher ratio by town.
+* black - 1000(Bk - 0.63)^2^ where Bk is the proportion of blacks by town.
+* lstat - lower status of the population (percent).
+* medv - median value of owner-occupied homes in \$1000s.
+  
+#####The source of the date are  
+Harrison, D. and Rubinfeld, D.L. (1978) Hedonic prices and the demand for clean air. J. Environ. Economics and Management 5, 81–102.  
+Belsley D.A., Kuh, E. and Welsch, R.E. (1980) Regression Diagnostics. Identifying Influential Data and Sources of Collinearity. New York: Wiley.  
+  
+  
+#####Now, let's print a summary of the data:  
+```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+# Getting the summary of the data
+summary(Boston)
+```
+#####and visualize the data by printing its correlation matrix  
+```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+library(corrplot, tidyverse)
+# calculate the correlation matrix
+cor_matrix<-cor(Boston)
+# print the correlation matrix
+# corrplot(cor_matrix, type = "upper", cl.pos = "b", tl.pos = "d", tl.cex = 0.6)
+# visualize the correlation matrix
+corrplot(cor_matrix, method="circle")
+```
+
+As we can see from the matrix, some variables have a strong positive (blue circles) or negative correlation (red circles). It appears, for example, that the area's property-tax rate (tax) correaltes heavily with access to radial highways (rad). In ther words, the closer the highways, the bigger the tax.  
+  
+The area's distance from employment centres, on the other hand, has a strong negative correlation with the its   
+a) number of older buildings   
+b) nitrogen oxide levels  
+c) proportion of non-retail business acres.  
+  
+In other words, areas farther away from the centres have younger buildings, less traffic, and fewer retail services. Maybe not that surprising.  
+
+Another self-evident correlation in the data can be seen in the lower right corner of the matrix: Low socioeconomic status of the people living in the area (lstat) has a strong negative correlation with the median value of owner-occupied homes (medv). In other words, poorer people own less-valuable properties and vice versa.  
+
+
+  
