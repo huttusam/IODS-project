@@ -6,6 +6,9 @@ setwd("I:/Google Drive/Helsingin yliopisto/Intro to Open Data Science/IODS-proje
 hd <- read.csv("http://s3.amazonaws.com/assets.datacamp.com/production/course_2218/datasets/human_development.csv", stringsAsFactors = F)
 gii <- read.csv("http://s3.amazonaws.com/assets.datacamp.com/production/course_2218/datasets/gender_inequality.csv", stringsAsFactors = F, na.strings = "..")
 
+#Load dplyr library
+library(dplyr)
+
 #Explore the datasets
 dim(hd)
 colnames(hd)
