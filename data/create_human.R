@@ -17,7 +17,7 @@ str(gii)
 summary(gii)
 
 #Rename the variables
-colnames(hd)[1] <- "HDI ranking"
+colnames(hd)[1] <- "HDIrank"
 colnames(hd)[2] <- "Country"
 colnames(hd)[3] <- "HDI"
 colnames(hd)[4] <- "LifeExp"
@@ -26,7 +26,7 @@ colnames(hd)[6] <- "MeanEduYrs"
 colnames(hd)[7] <- "GNI"
 colnames(hd)[8] <- "GNIminusHDIrank"
 
-colnames(gii)[1] <- "GII ranking"
+colnames(gii)[1] <- "GIIrank"
 colnames(gii)[2] <- "Country"
 colnames(gii)[3] <- "GII"
 colnames(gii)[4] <- "MMR"
