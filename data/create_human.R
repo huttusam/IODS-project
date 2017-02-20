@@ -65,10 +65,57 @@ dim(human)
 
 # Save joined and modified data 'human' to a file that looks good in a European version of Excel, but also has a decimal point instead of a comma
 write.table(human, file = "human.csv", sep = ";", qmethod="double", row.names=FALSE)
-hd
+
 # access the stringr package
 library(stringr)
 
-# remove the commas from GNI and print out a numeric version of it
-str_replace(human$GNI, pattern=",", replace ="") %>% as.numeric()
+# remove the commas from GNI and create a numeric version of it
+str_replace(human$GNI, pattern=",", replace ="") %>% as.numeric() -> human$GNI
 
+# Checking if human$GNI is now numeric: looks ok.
+str(human$GNI)
+
+# Accessing dplyr library
+library(dplyr)
+
+# Keeping only desired columns
+keep <- c("Country", "EduFemale", "LabourFemale", "ExpEduYrs", "LifeExp", "GNI", "MMR", "ABR", "FemaleParl")
+human <- select(human, one_of(keep))
+
+# Checking structure of human: looks ok.
+str(human)
+
+# filter out all rows with NA values
+human <- filter(human, complete.cases(human))
+
+#Checking human: looks ok, no NA values
+human
+
+# look for regions in human$countries
+human$Country
+# Looks like regions are the last variables
+
+# look at the last 10 observations of human
+tail(human, n=10)
+# Seems that last 7 should go
+
+# define the last indice we want to keep
+last <- nrow(human) - 7
+
+# choose everything until the last 7 observations
+human <- human[1:last, ]
+
+#Checking human$Country: looks ok, only countries
+human$Country
+
+# Define the row names of the data by the country names
+rownames(human) <- human$Country
+
+#Checking row names: ok.
+rownames(human)
+
+# remove the Country variable
+human <- select(human, -Country)
+
+# Save joined and modified data 'human' over 'human.csv' with row names
+write.table(human, file = "human.csv", sep = ";", qmethod="double", row.names=TRUE, col.names = NA)

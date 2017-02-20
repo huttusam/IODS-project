@@ -1,36 +1,39 @@
 # Dimensionality reduction techniques
 
-This exercise analyses data from the *Boston Dataset*, which is a dataset containing Housing Values of Boston, Massachusettes Suburbias.  
+##### This exercise analyses data from the wrangled *Human* dataset with 155 observations in 8 variables (+ countries as row names).
 
-```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
-# access the MASS package
-library(MASS)
-# load the data
-data("Boston")
-```
-The data has 506 observations and 14 variables  
 ```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
-# Exploring the dimensions of the data
-dim(Boston)
+# load the wrangled Human data
+human = read.table("data/human.csv", sep = ";", header = TRUE)
+# Dimensions of the data
+dim(human)
 ```
-and its data structure looks like this:
+
+##### Human is a subset of a dataset at http://hdr.undp.org/en/content/human-development-index-hdi by Tuomo Nieminen.  
+##### The original data combines several indicators from most countries in the world and the subset has the following variables:
+
+* "Country" = Country name (as row name)
+* "GNI" = Gross National Income per capita
+* "LifeExp" = Life expectancy at birth
+* "ExpEduYrs" = Expected years of schooling 
+* "MMR" = Maternal mortality ratio
+* "ABR" = Adolescent birth rate
+* "FemaleParl" = Percetange of female representatives in parliament
+* "EduFemale" = Proportion of females with at least secondary education
+* "LabourFemale" = Proportion of females in the labour force.
+
+The structure of the *human* dataset looks like this:
 ```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
-# Exploring the structure of the data
-str(Boston)
+# Print structure of the data
+str(human)
 ```
-  
-#####The variables stand for:
-* crim - per capita crime rate by town.
-* zn - proportion of residential land zoned for lots over 25,000 sq.ft.
-* indus - proportion of non-retail business acres per town.
-* chas - Charles River dummy variable (= 1 if tract bounds river; 0 otherwise).
-* nox - nitrogen oxides concentration (parts per 10 million).
-* rm - average number of rooms per dwelling.
-* age - proportion of owner-occupied units built prior to 1940.
-* dis - weighted mean of distances to five Boston employment centres.
-* rad - index of accessibility to radial highways.
-* tax - full-value property-tax rate per \$10,000.
-* ptratio - pupil-teacher ratio by town.
-* black - 1000(Bk - 0.63)^2^ where Bk is the proportion of blacks by town.
-* lstat - lower status of the population (percent).
-* medv - median value of owner-occupied homes in \$1000s.
+
+And its summary like this:
+```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+# Print summary of the data
+summary(human)
+```
+
+
+
+
