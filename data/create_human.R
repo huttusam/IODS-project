@@ -65,5 +65,10 @@ dim(human)
 
 # Save joined and modified data 'human' to a file that looks good in a European version of Excel, but also has a decimal point instead of a comma
 write.table(human, file = "human.csv", sep = ";", qmethod="double", row.names=FALSE)
+hd
+# access the stringr package
+library(stringr)
 
+# remove the commas from GNI and print out a numeric version of it
+str_replace(human$GNI, pattern=",", replace ="") %>% as.numeric()
 
