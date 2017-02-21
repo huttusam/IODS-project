@@ -1,6 +1,6 @@
 # Dimensionality reduction techniques
 
-##### This exercise analyses data from the wrangled *Human* dataset with 155 observations in 8 variables (+ countries as row names).
+##### This exercise analyses data from the wrangled *Human* dataset with 155 observations in 8 variables.
 
 ```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
 # load the wrangled Human data
@@ -10,9 +10,8 @@ dim(human)
 ```
 
 ##### Human is a subset of a dataset at http://hdr.undp.org/en/content/human-development-index-hdi by Tuomo Nieminen.  
-##### The original data combines several indicators from most countries in the world and the subset has the following variables:
+##### The original data combines several indicators from most countries in the world and the subset has the following variables by country:
 
-* "Country" = Country name (as row name)
 * "GNI" = Gross National Income per capita
 * "LifeExp" = Life expectancy at birth
 * "ExpEduYrs" = Expected years of schooling 
