@@ -33,6 +33,33 @@ And its summary like this:
 summary(human)
 ```
 
+Now, printing correlation matrix of data and visualizing it further with plots:
+```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+# Access GGall, dplyr, corrplot
+library(GGally)
+library(dplyr)
+library(corrplot)
+# visualize the 'human' variables
+ggpairs(human)
+# compute the correlation matrix and visualize it with corrplot
+cor(human) %>% corrplot()
 
+```
+  
+**Correlations:**  
+  
+As we can see from above visualizations, *female education* has a strong positive correlation with expected number of years in education, life expectancy and gross national indome per capita (GNI). There's also a high negative correlation with maternal mortality rate (MMR) and adolescent birth rate (ABR). In sum: Providing women with equal opportunity to education is good for everybody and the society as a whole.  
+  
+*Expected years in education* has a strong positive correlation with life expectancy and a strong negative correlation with both MMR and ABR.  
+
+*Life expectancy* has a strong positive correlation with GNI and even stronger, but negative, correlation with MMR and ABR.  
+  
+*GNI* correlates positively with ABR and negatively with MMR.  
+  
+*MMR* has a high positive correlation with ABR.  
+
+**Distributions:**  
+  
+It can also be seen from the distributions that female education is very evenly distributed among countries. Proportion of females of the labour force, individual's expected years of education and percentage of females in the parliament follow a somewhat normal distibution. Life expectancy varies between coutries with most countries at the higher end of the scale, but some still lagging behind. Gross national income per capita is still very unevenly distributed with most countries at the low end of the scale. Maternal mortality and adolescent birth rate are fortunately low in most countries, but adolescent pregnancies still seem to be an issue violating the rights of children in many parts of the world.  
 
 
