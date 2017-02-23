@@ -35,7 +35,7 @@ summary(human)
 
 Now, printing correlation matrix of data and visualizing it further with plots:
 ```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
-# Access GGall, dplyr, corrplot
+# Access GGally, dplyr, corrplot
 library(GGally)
 library(dplyr)
 library(corrplot)
@@ -61,5 +61,16 @@ As we can see from above visualizations, *female education* has a strong positiv
 **Distributions:**  
   
 It can also be seen from the distributions that female education is very evenly distributed among countries. Proportion of females of the labour force, individual's expected years of education and percentage of females in the parliament follow a somewhat normal distibution. Life expectancy varies between coutries with most countries at the higher end of the scale, but some still lagging behind. Gross national income per capita is still very unevenly distributed with most countries at the low end of the scale. Maternal mortality and adolescent birth rate are fortunately low in most countries, but adolescent pregnancies still seem to be an issue violating the rights of children in many parts of the world.  
+
+Let's perform principal component analysis on the data (unstandardized), show the variability captured by the principal components and draw a biplot.  
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
+# perform principal component analysis (PCA) with the SVD method
+pca_human <- prcomp(human, scale=TRUE)
+# print out summaries of the variables
+summary(pca_human, scale=TRUE)
+# draw a biplot of the PCA and the original variables
+biplot(pca_human, choices = 1:2, cex = c(0.8, 1), col = c("grey30", "red"))
+```
+
 
 
