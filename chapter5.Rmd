@@ -65,12 +65,23 @@ It can also be seen from the distributions that female education is very evenly 
 Let's perform principal component analysis on the data (unstandardized), show the variability captured by the principal components and draw a biplot.  
 ```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
 # perform principal component analysis (PCA) with the SVD method
-pca_human <- prcomp(human, scale=TRUE)
+pca_human <- prcomp(human)
 # print out summaries of the variables
-summary(pca_human, scale=TRUE)
+summary(pca_human)
 # draw a biplot of the PCA and the original variables
 biplot(pca_human, choices = 1:2, cex = c(0.8, 1), col = c("grey30", "red"))
 ```
 
+Next, we'll standardize the variables in the data and repeat the analysis.
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
+# standardize the variables
+human_std <- scale(human)
+# perform principal component analysis (with the SVD method)
+pca2_human <- prcomp(human_std)
+# print out summaries of the variables
+summary(pca2_human)
+# draw a biplot of the principal component representation and the original variables
+biplot(pca2_human, choices = 1:2, cex = c(0.8, 1), col = c("grey30", "red"))
 
+```
 
