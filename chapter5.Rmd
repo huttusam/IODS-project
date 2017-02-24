@@ -1,6 +1,6 @@
-# Dimensionality reduction techniques
+# Dimensionality reduction techniques  
 
-##### This exercise analyses data from the wrangled *Human* dataset with 155 observations in 8 variables.
+This exercise analyses data from the wrangled *Human* dataset with 155 observations in 8 variables.  
 
 ```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
 # load the wrangled Human data
@@ -9,8 +9,8 @@ human = read.table("data/human.csv", sep = ";", header = TRUE)
 dim(human)
 ```
 
-##### Human is a subset of a dataset at http://hdr.undp.org/en/content/human-development-index-hdi by Tuomo Nieminen.  
-##### The original data combines several indicators from most countries in the world and the subset has the following variables by country:
+Human is a subset of a dataset at http://hdr.undp.org/en/content/human-development-index-hdi by Tuomo Nieminen.  
+###### The original data combines several indicators from most countries in the world and the subset has the following variables by country:  
 
 * "GNI" = Gross National Income per capita
 * "LifeExp" = Life expectancy at birth
@@ -21,19 +21,22 @@ dim(human)
 * "EduFemale" = Proportion of females with at least secondary education
 * "LabourFemale" = Proportion of females in the labour force.
 
-The structure of the *human* dataset looks like this:
+The structure of the *human* dataset looks like this:  
+
 ```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
 # Print structure of the data
 str(human)
 ```
 
-And its summary like this:
+And its summary like this:  
+
 ```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
 # Print summary of the data
 summary(human)
 ```
 
-Now, printing correlation matrix of data and visualizing it further with plots:
+Now, printing correlation matrix of data and visualizing it further with plots:  
+
 ```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
 # Access libraries
 library(ggplot2)
@@ -65,8 +68,9 @@ As we can see from above visualizations, *female education* has a strong positiv
   
 It can also be seen from the distributions that female education is very evenly distributed among countries. Proportion of females in the labour force, individual's expected years of education and percentage of females in the parliament follow a somewhat normal distibution. Life expectancy varies between coutries with most countries at the higher end of the scale, but some still lagging behind. Gross national income per capita is still very unevenly distributed with most countries at the low end of the scale. Maternal mortality and adolescent birth rate are fortunately low in most countries, but adolescent pregnancies still seem to be an issue violating the rights of children in many parts of the world.  
 
-##### Let's perform principal component analysis on the data (unstandardized), show the variability captured by the principal components and draw a biplot.  
-```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
+Let's perform principal component analysis on the data (unstandardized), show the variability captured by the principal components and draw a biplot:  
+
+```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
 # perform principal component analysis (PCA) with the SVD method
 pca_human <- prcomp(human)
 # print out summaries of the variables
@@ -78,7 +82,8 @@ biplot(pca_human, choices = 1:2, cex = c(0.8, 1), col = c("grey70", "blue"))
 Without standardisation GNI, with its biggest variance, seems to be orthogonal (perpendicular) to other variables. Also, all other variables are on top of eachother and crammed to one side of the matrix and so it is impossible to see any correlations between them.  
 
 So, let's standardize the variables and repeat the analysis:  
-```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
+
+```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
 # standardize the variables
 human_std <- scale(human)
 # perform principal component analysis (with the SVD method)
@@ -106,7 +111,7 @@ summary(tea)
 
 The data has answers from 300 individuals to 36 questions about their tea drinking habits. Accoring to information found on the Internet, the researchers have asked 300 individuals how they drink tea (18 questions), what are their product's perception (12 questions) and some personal details (4 questions).  
 
-##### Let's choose some interesting 'Tea' data variables:  
+###### Let's choose some interesting 'Tea' data variables:  
 * "Tea" = whether the person drinks black tea, Earl Grey or green tea  
 * "How" = whether the person drinks her tea raw, with lemon, with milk or with something else  
 * "how" = whether the person uses tea bags, unpackaged tea or both  
@@ -122,7 +127,9 @@ tea_time <- select(tea, one_of(keep_columns))
 # look at the summaries and structure of the data
 summary(tea_time)
 ```
+
 Now, let's visualize the dataset:  
+
 ```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
 # visualize the dataset
 gather(tea_time) %>% ggplot(aes(value)) + geom_bar() + facet_wrap("key", scales = "free") + theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 8))
@@ -153,3 +160,4 @@ plot(mca, invisible=c("ind"), habillage = "quali")
 ```
 
 As we can see from the plot, the packaging method and place of purchase appear to be closely linked: It seems that unpackaged tea is often bought from tea shops and tea bags from chain stores. The plot also shows that unpackaged tea and tea shops are very different categories from the rest, and indicates that green tea is more often bought as unpackaged and from a tea store than other tea types. A difference between everyday tea drinking and those sweet moments with a little bit of feeling of luxury?  
+
