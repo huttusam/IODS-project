@@ -35,7 +35,7 @@ summary(human)
 
 Now, printing correlation matrix of data and visualizing it further with plots:
 ```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
-# Access GGally, dplyr, corrplot
+# Access libraries
 library(ggplot2)
 library(GGally)
 library(dplyr)
@@ -63,19 +63,21 @@ As we can see from above visualizations, *female education* has a strong positiv
 
 **Distributions:**  
   
-It can also be seen from the distributions that female education is very evenly distributed among countries. Proportion of females of the labour force, individual's expected years of education and percentage of females in the parliament follow a somewhat normal distibution. Life expectancy varies between coutries with most countries at the higher end of the scale, but some still lagging behind. Gross national income per capita is still very unevenly distributed with most countries at the low end of the scale. Maternal mortality and adolescent birth rate are fortunately low in most countries, but adolescent pregnancies still seem to be an issue violating the rights of children in many parts of the world.  
+It can also be seen from the distributions that female education is very evenly distributed among countries. Proportion of females in the labour force, individual's expected years of education and percentage of females in the parliament follow a somewhat normal distibution. Life expectancy varies between coutries with most countries at the higher end of the scale, but some still lagging behind. Gross national income per capita is still very unevenly distributed with most countries at the low end of the scale. Maternal mortality and adolescent birth rate are fortunately low in most countries, but adolescent pregnancies still seem to be an issue violating the rights of children in many parts of the world.  
 
-Let's perform principal component analysis on the data (unstandardized), show the variability captured by the principal components and draw a biplot.  
+##### Let's perform principal component analysis on the data (unstandardized), show the variability captured by the principal components and draw a biplot.  
 ```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
 # perform principal component analysis (PCA) with the SVD method
 pca_human <- prcomp(human)
 # print out summaries of the variables
 summary(pca_human)
 # draw a biplot of the PCA and the original variables
-biplot(pca_human, choices = 1:2, cex = c(0.8, 1), col = c("grey30", "red"))
+biplot(pca_human, choices = 1:2, cex = c(0.8, 1), col = c("grey70", "blue"))
 ```
 
-Next, we'll standardize the variables in the data and repeat the analysis.
+Without standardisation GNI, with its biggest variance, seems to be orthogonal (perpendicular) to other variables. Also, all other variables are on top of eachother and crammed to one side of the matrix and so it is impossible to see any correlations between them.  
+
+So, let's standardize the variables and repeat the analysis:  
 ```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
 # standardize the variables
 human_std <- scale(human)
@@ -84,15 +86,13 @@ pca2_human <- prcomp(human_std)
 # print out summaries of the variables
 summary(pca2_human)
 # draw a biplot of the principal component representation and the original variables
-biplot(pca2_human, choices = 1:2, cex = c(0.8, 1), col = c("grey30", "red"))
+biplot(pca2_human, choices = 1:2, cex = c(0.8, 1), col = c("grey70", "blue"))
 
 ```
-  
-Are the results different? Why or why not? Include captions in you plots where you describe the results by using not just your variable names, but the actual phenomenons they relate to.  
-  
-Give your personal interpretations of the first two principal component dimensions based on the biplot drawn after PCA on the standardized human data.  
 
-Next, we'll load the 'tea' dataset from the Factominer package and look at the structure and the dimensions of the data:  
+From the standardized data, we are able to find the correlating variables and can see which of them are affected by PC1 and PC2. MMR and ABR (the right-pointing arrows) have an effect on overall life expectancy and, further, on expected years of schooling and GNI (the left-pointing arrows). Women's health and rights matter and are important, not only to indivisuals themselves, but to the society as a whole!  
+
+Next, we'll load a new dataset called 'Tea' from the Factominer package and look at the dimensions, structure and summary of the data:  
 
 ```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
 data(tea)
@@ -103,7 +103,17 @@ str(tea)
 # Summary of the data
 summary(tea)
 ```
-Then we'll take some of the 'tea' data columns and visualize them:  
+
+The data has answers from 300 individuals to 36 questions about their tea drinking habits. Accoring to information found on the Internet, the researchers have asked 300 individuals how they drink tea (18 questions), what are their product's perception (12 questions) and some personal details (4 questions).  
+
+##### Let's choose some interesting 'Tea' data variables:  
+* "Tea" = whether the person drinks black tea, Earl Grey or green tea  
+* "How" = whether the person drinks her tea raw, with lemon, with milk or with something else  
+* "how" = whether the person uses tea bags, unpackaged tea or both  
+* "sugar" = whether the person uses sugar with her tea or not  
+* "where" = where does the person buy her tea: tea shop, chain store or both  
+* "lunch" = does the person have tea with lunch or not.  
+
 ```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
 # column names to keep in the dataset
 keep_columns <- c("Tea", "How", "how", "sugar", "where", "lunch")
@@ -111,11 +121,35 @@ keep_columns <- c("Tea", "How", "how", "sugar", "where", "lunch")
 tea_time <- select(tea, one_of(keep_columns))
 # look at the summaries and structure of the data
 summary(tea_time)
+```
+Now, let's visualize the dataset:  
+```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
 # visualize the dataset
-gather(tea_time) %>% ggplot(aes(value), geom_bar()) + facet_wrap("key", scales = "free") + theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 8))
+gather(tea_time) %>% ggplot(aes(value)) + geom_bar() + facet_wrap("key", scales = "free") + theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 8))
+```
+
+As we can see from the visualization of the 'Tea' dataset, most respondents buy their tea from chain stores as tea bags, prefer Earl Grey over other flavours, don't mix anything else in their tea apart from sugar, and don't drink tea with their lunch.  
+
+Next, we'll apply multiple correspondence analysis (MCA) on these variables:  
+
+```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+# multiple correspondence analysis
+mca <- MCA(tea_time, graph = FALSE)
+# summary of the model
+summary(mca)
+``` 
+
+Looking at the results, we can see that:  
+a) Dimensions 1 and 2 explain most of the variance, although non of the dimensions explains the variance significantly more than others.  
+b) Dimensions 1 and 2 are strongly linked to place of purchase and packaging method, and Dimension 3 to tea type and how people drink it (use of sugar, mixing milk/lemon/other).  
+c) Dimension 1 is most contributed by using unpackaged tea, Dimension 2 by the using both tea bags & unpackaged tea, and Dimension 3 by drinking black tea.  
+
+Finally, let's draw a variable biplot of the analysis:  
+
+```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+# visualize MCA
+plot(mca, invisible=c("ind"), habillage = "quali")
 
 ```
 
-Then do Multiple Correspondence Analysis on the tea data (or to a certain columns of the data, it’s up to you).  
-
-Interpret the results of the MCA and draw at least the variable biplot of the analysis. You can also explore other plotting options for MCA. Comment on the output of the plots.  
+As we can see from the plot, the packaging method and place of purchase appear to be closely linked: It seems that unpackaged tea is often bought from tea shops and tea bags from chain stores. The plot also shows that unpackaged tea and tea shops are very different categories from the rest, and indicates that green tea is more often bought as unpackaged and from a tea store than other tea types. A difference between everyday tea drinking and those sweet moments with a little bit of feeling of luxury?  
