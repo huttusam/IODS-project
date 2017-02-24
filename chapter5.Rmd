@@ -36,9 +36,12 @@ summary(human)
 Now, printing correlation matrix of data and visualizing it further with plots:
 ```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
 # Access GGally, dplyr, corrplot
+library(ggplot2)
 library(GGally)
 library(dplyr)
 library(corrplot)
+library(FactoMineR)
+library(tidyr)
 # visualize the 'human' variables
 ggpairs(human)
 # compute the correlation matrix and visualize it with corrplot
@@ -89,6 +92,30 @@ Are the results different? Why or why not? Include captions in you plots where y
   
 Give your personal interpretations of the first two principal component dimensions based on the biplot drawn after PCA on the standardized human data.  
 
-Load the tea dataset from the package Factominer. Explore the data briefly: look at the structure and the dimensions of the data and visualize it. Then do Multiple Correspondence Analysis on the tea data (or to a certain columns of the data, it’s up to you). Interpret the results of the MCA and draw at least the variable biplot of the analysis. You can also explore other plotting options for MCA. Comment on the output of the plots.  
+Next, we'll load the 'tea' dataset from the Factominer package and look at the structure and the dimensions of the data:  
 
+```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+data(tea)
+# Dimensions of the data
+dim(tea)
+# Structure of the data
+str(tea)
+# Summary of the data
+summary(tea)
+```
+Then we'll take some of the 'tea' data columns and visualize them:  
+```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+# column names to keep in the dataset
+keep_columns <- c("Tea", "How", "how", "sugar", "where", "lunch")
+# select the 'keep_columns' to create a new dataset
+tea_time <- select(tea, one_of(keep_columns))
+# look at the summaries and structure of the data
+summary(tea_time)
+# visualize the dataset
+gather(tea_time) %>% ggplot(aes(value), geom_bar()) + facet_wrap("key", scales = "free") + theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 8))
 
+```
+
+Then do Multiple Correspondence Analysis on the tea data (or to a certain columns of the data, it’s up to you).  
+
+Interpret the results of the MCA and draw at least the variable biplot of the analysis. You can also explore other plotting options for MCA. Comment on the output of the plots.  

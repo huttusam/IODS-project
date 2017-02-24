@@ -119,3 +119,5 @@ human <- select(human, -Country)
 
 # Save joined and modified data 'human' over 'human.csv' with row names
 write.table(human, file = "human.csv", sep = ";", qmethod="double", row.names=TRUE, col.names = NA)
+
+
