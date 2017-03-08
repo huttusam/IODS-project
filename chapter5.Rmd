@@ -2,7 +2,7 @@
 
 This exercise analyses data from the wrangled *Human* dataset with 155 observations in 8 variables.  
 
-```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
 # load the wrangled Human data
 human = read.table("data/human.csv", sep = ";", header = TRUE)
 # Dimensions of the data
@@ -23,21 +23,21 @@ Human is a subset of a dataset at http://hdr.undp.org/en/content/human-developme
 
 The structure of the *human* dataset looks like this:  
 
-```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
 # Print structure of the data
 str(human)
 ```
 
 And its summary like this:  
 
-```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
 # Print summary of the data
 summary(human)
 ```
 
 Now, printing correlation matrix of data and visualizing it further with plots:  
 
-```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
 # Access libraries
 library(ggplot2)
 library(GGally)
@@ -49,7 +49,6 @@ library(tidyr)
 ggpairs(human)
 # compute the correlation matrix and visualize it with corrplot
 cor(human) %>% corrplot()
-
 ```
   
 **Correlations:**  
@@ -70,7 +69,7 @@ It can also be seen from the distributions that female education is very evenly 
 
 Let's perform principal component analysis on the data (unstandardized), show the variability captured by the principal components and draw a biplot:  
 
-```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
 # perform principal component analysis (PCA) with the SVD method
 pca_human <- prcomp(human)
 # print out summaries of the variables
@@ -83,7 +82,7 @@ Without standardisation GNI, with its biggest variance, seems to be orthogonal (
 
 So, let's standardize the variables and repeat the analysis:  
 
-```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
 # standardize the variables
 human_std <- scale(human)
 # perform principal component analysis (with the SVD method)
@@ -99,7 +98,7 @@ From the standardized data, we are able to find the correlating variables and ca
 
 Next, we'll load a new dataset called 'Tea' from the Factominer package and look at the dimensions, structure and summary of the data:  
 
-```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
 data(tea)
 # Dimensions of the data
 dim(tea)
@@ -119,7 +118,7 @@ The data has answers from 300 individuals to 36 questions about their tea drinki
 * "where" = where does the person buy her tea: tea shop, chain store or both  
 * "lunch" = does the person have tea with lunch or not.  
 
-```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
 # column names to keep in the dataset
 keep_columns <- c("Tea", "How", "how", "sugar", "where", "lunch")
 # select the 'keep_columns' to create a new dataset
@@ -130,7 +129,7 @@ summary(tea_time)
 
 Now, let's visualize the dataset:  
 
-```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
 # visualize the dataset
 gather(tea_time) %>% ggplot(aes(value)) + geom_bar() + facet_wrap("key", scales = "free") + theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 8))
 ```
@@ -139,7 +138,7 @@ As we can see from the visualization of the 'Tea' dataset, most respondents buy 
 
 Next, we'll apply multiple correspondence analysis (MCA) on these variables:  
 
-```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
 # multiple correspondence analysis
 mca <- MCA(tea_time, graph = FALSE)
 # summary of the model
@@ -153,7 +152,7 @@ c) Dimension 1 is most contributed by using unpackaged tea, Dimension 2 by the u
 
 Finally, let's draw a variable biplot of the analysis:  
 
-```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
 # visualize MCA
 plot(mca, invisible=c("ind"), habillage = "quali")
 

@@ -34,5 +34,6 @@ output:
 
 ***
 
+## Chapter 5 missing due to an error in knitting: Please open chapter.html
 
 ***
