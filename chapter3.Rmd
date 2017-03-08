@@ -16,7 +16,7 @@
 
 The new dataset 'alc' has 382 observations and 35 variables. The variables are:
 
-```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
 
 alc = read.table("data/alcohol-joined.csv", sep = ";", header = TRUE)
 colnames(alc)
@@ -71,7 +71,7 @@ colnames(alc)
 
 Let's look at a graphical summarization of the data:
 
-```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
 # access the tidyverse libraries tidyr, dplyr, ggplot2
 library(tidyverse);
 # draw a bar plot of each variable
@@ -83,7 +83,7 @@ Interegsting variables to look at, considering their relation to alcohol consump
 
 OK, let's see how the aformentioned four variables correlate with alcohol consumption by cross tabulating them and drawing some plots to illustrate these correlations:
 
-```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
 
 # produce summary statistics by sex and mean alcohol use
 alc %>% group_by(sex) %>% summarise(count = n(), mean_alcuse = mean(alc_use)) 
@@ -130,21 +130,21 @@ By looking at the cross-tabulaions and graphical presentations above, we can see
 
 Next we fit a logistic regression model to explain high consumption of alcohol.
 
-```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
 # find the model with glm()
 m <- glm(high_use ~ G3 + absences + health + sex, data = alc, family = "binomial")
 ```
 
 The summary of our fitted model is
 
-```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
 # print out a summary of the model
 summary(m)
 ```
 
 ... and the coefficients of the model as odds ratios with confidence intervals is
 
-```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
 
 # compute odds ratios (OR)
 OR <- coef(m) %>% exp
@@ -165,7 +165,7 @@ When we look at the above printout, we can see that final grades, amount of abse
 Using the variables which, according to our logistic regression model, have a statistical relationship with alcohol consumption, let's perform a 2x2 cross tabulation of predictions versus the actual values and visualize both the actual values and predictions graphically.
 
 
-```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
 
 # predict the probability of high alcohol use
 probabilities <- predict(m, type = "response")
@@ -192,7 +192,7 @@ Our model estimates that 87 participants would not be and 12 would be high users
 
 Let's now compute the total proportion of inaccurately classified observations (i.e. incorrect predicitions, training error):
 
-```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
 
 # define a loss function (mean prediction error)
 loss_func <- function(class, prob) {
@@ -207,7 +207,7 @@ loss_func(class = alc$high_use, prob = alc$probability)
 
 ... and, as a BONUS, do a 10-fold cross-validation for our model:
 
-```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
 
 # K-fold cross-validation
 library(boot)
@@ -224,7 +224,7 @@ The validation error in our 10-fold cross-validation is about the same as in the
 
 On the other hand, if we were to change our independent variable G3 (grade) to goout (how much the person goes out with his/her friends), the predictive power of our model increases, as can be seen in this second cross-validation:
 
-```{r echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+```{r echo=TRUE, error=FALSE, warning=FALSE, message=FALSE}
 
 # find the model with glm
 m2 <- glm(high_use ~ goout + absences + health + sex, data = alc, family = "binomial")
